@@ -128,69 +128,118 @@
             
             <div><span class="retry-link" onclick="initQuiz()">↺ 再練一次這組單字</span></div>
 
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdNkem-vuwWTDc5eEfhv4FlqpubNv7dsoY0uFQEcv4c5rCtyg/viewform?usp=header" class="cta-button" target="_blank">前往👉實戰驗收：📝多益模擬題型</a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdNkem-vuwWTDc5eEfhv4FlqpubNv7dsoY0uFQEcv4c5rCtyg/viewform?usp=header" class="cta-button" target="_blank">前往👉下一關:中階情境演練</a>
 
             <div class="footer-upsell">
-                💡 這套「直覺單字+實戰刷題」模式很有效吧!完整多益衝刺計畫已在蝦皮上架。<br>
-                <a href="https://shopee.tw/YOUR_LINK" class="shopee-link" target="_blank">點此前往蝦皮賣場看更多</a>
+                這套「單字直覺」練習模式很有效吧!完整多益衝刺計畫已上架。<br>
+                <a href="https://shopee.tw/YOUR_LINK" class="shopee-link" target="_blank">點此前往看更多</a>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-// EP15 核心資料庫：無首字母提示、移除所有字尾變化的純挖空版本
+// EP15 核心資料庫 (351 - 375 共 25 字，正誤交叉設計，誘答中文均取材自本集清單)
 const rawData = [
-    { type: "單字辨析", word: "<u><b>divide</b></u> the project into three phases", show: "將專案分成三階段", ans: true, feedback: "divide 是動詞「分開、分成」。" },
-    { type: "句型搭配", word: "divide", show: "______ the project into three phases / 填入：divide", ans: true, feedback: "應填入 divide。" },
-    { type: "單字辨析", word: "plants <u><b>native</b></u> to this island", show: "島上的外來植物", ans: false, feedback: "native 是形容詞「本土的、土生長長的」。" },
-    { type: "句型搭配", word: "native", show: "plants ______ to this island / 填入：native", ans: true, feedback: "應填入 native。" },
-    { type: "單字辨析", word: "<u><b>afford</b></u> the cost of living", show: "負擔生活費用", ans: true, feedback: "afford 是動詞「負擔得起」。" },
-    { type: "句型搭配", word: "afford", show: "______ the cost of living / 填入：postpone", ans: false, feedback: "應填入 afford。" },
-    { type: "單字辨析", word: "high household <u><b>income</b></u>", show: "家庭高收入", ans: true, feedback: "income 是名詞「收入」。" },
-    { type: "句型搭配", word: "income", show: "high household ______ / 填入: income", ans: true, feedback: "應填入 income。" },
-    { type: "單字辨析", word: "an error <u><b>occurred</b></u> during payment", show: "付款過程中消除錯誤", ans: false, feedback: "occur 是動詞「發生、出現」。" },
-    { type: "句型搭配", word: "occur", show: "an error ______ during payment / 填入：occurred", ans: true, feedback: "應填入 occurred。" },
-    { type: "單字辨析", word: "energy <u><b>savings</b></u>", show: "能源節省", ans: true, feedback: "saving 在此常作複數名詞指「節省、節約金額」。" },
-    { type: "句型搭配", word: "saving", show: "energy ______ / 填入：labor", ans: false, feedback: "應填入 savings。" },
-    { type: "單字辨析", word: "research <u><b>findings</b></u> show that...", show: "研究發現/研究結果指出...", ans: true, feedback: "finding 常用複數型指「調查發現、研究結果」。" },
-    { type: "句型搭配", word: "finding", show: "research ______ show that... / 填入：findings", ans: true, feedback: "應填入 findings。" },
-    { type: "單字辨析", word: "<u><b>locate</b></u> the missing file", show: "刪除遺失的檔案", ans: false, feedback: "locate 是動詞「找出、尋獲...的位置」。" },
-    { type: "句型搭配", word: "locate", show: "______ the missing file / 填入：locate", ans: true, feedback: "應填入 locate。" },
-    { type: "單字辨析", word: "<u><b>postpone</b></u> a meeting until next week", show: "將會議延期至下週", ans: true, feedback: "postpone 是動詞「延期」。" },
-    { type: "句型搭配", word: "postpone", show: "______ a meeting until next week / 填入：divide", ans: false, feedback: "應填入 postpone。" },
-    { type: "單字辨析", word: "<u><b>preserve</b></u> the natural environment", show: "保護/保存自然環境", ans: true, feedback: "preserve 是動詞「保護、保存」。" },
-    { type: "句型搭配", word: "preserve", show: "______ the natural environment / 填入：preserve", ans: true, feedback: "應填入 preserve。" },
-    { type: "單字辨析", word: "<u><b>prove</b></u> to be effective", show: "證明、結果是有效的", ans: true, feedback: "prove to be 意為「結果是、證明是」。" },
-    { type: "句型搭配", word: "prove", show: "______ to be effective / 填入：analyze", ans: false, feedback: "應填入 prove。" },
-    { type: "單字辨析", word: "the <u><b>exact</b></u> time of delivery", show: "大概的送達時間", ans: false, feedback: "exact 是形容詞「確切的、正確的」。" },
-    { type: "句型搭配", word: "exact", show: "the ______ time of delivery / 填入：exact", ans: true, feedback: "應填入 exact。" },
-    { type: "單字辨析", word: "<u><b>gain</b></u> popularity", show: "獲得人氣", ans: true, feedback: "gain 是動詞「獲得、增加」。" },
-    { type: "句型搭配", word: "gain", show: "______ popularity / 填入：gain", ans: true, feedback: "應填入 gain。" },
-    { type: "單字辨析", word: "reduce <u><b>labor</b></u> costs", show: "降低人事/勞動成本", ans: true, feedback: "labor 是名詞「勞動、勞工」。" },
-    { type: "句型搭配", word: "labor", show: "reduce ______ costs / 填入：income", ans: false, feedback: "應填入 labor。" },
-    { type: "單字辨析", word: "be widely <u><b>regarded</b></u> as", show: "被廣泛忽視", ans: false, feedback: "be regarded as 是「被視為、被廣泛認為」。" },
-    { type: "句型搭配", word: "regard", show: "be widely ______ as / 填入：regarded", ans: true, feedback: "應填入 regarded。" },
-    { type: "單字辨析", word: "work <u><b>closely</b></u> with suppliers", show: "與供應商密切合作", ans: true, feedback: "closely 是副詞「密切地」。" },
-    { type: "句型搭配", word: "closely", show: "work ______ with suppliers / 填入：closely", ans: true, feedback: "應填入 closely。" },
-    { type: "單字辨析", word: "<u><b>deserve</b></u> a promotion", show: "不配得到升遷", ans: false, feedback: "deserve 是動詞「應得、值得」。" },
-    { type: "句型搭配", word: "deserve", show: "______ a promotion / 填入：deserve", ans: true, feedback: "應填入 deserve。" },
-    { type: "單字辨析", word: "<u><b>identify</b></u> potential risks", show: "識別/找出潛在風險", ans: true, feedback: "identify 是動詞「識別、認出、找出」。" },
-    { type: "句型搭配", word: "identify", show: "______ potential risks / 填入：preserve", ans: false, feedback: "應填入 identify。" },
-    { type: "單字辨析", word: "<u><b>loyal</b></u> customers", show: "常客、忠誠顧客", ans: true, feedback: "loyal 是形容詞「忠誠的」。" },
-    { type: "句型搭配", word: "loyal", show: "______ customers / 填入：loyal", ans: true, feedback: "應填入 loyal。" },
-    { type: "單字辨析", word: "the most <u><b>promising</b></u> candidate for the position", show: "最沒希望的候選人", ans: false, feedback: "promising 是形容詞「大有可為的、最有希望的」。" },
-    { type: "句型搭配", word: "promising", show: "the most ______ candidate for the position / 填入：promising", ans: true, feedback: "應填入 promising。" },
-    { type: "單字辨析", word: "<u><b>stress</b></u> the importance of teamwork", show: "強調團隊合作的重要性", ans: true, feedback: "stress 在此作為動詞，意為「強調」。" },
-    { type: "句型搭配", word: "stress", show: "______ the importance of teamwork / 填入：exact", ans: false, feedback: "應填入 stress。" },
-    { type: "單字辨析", word: "<u><b>analyze</b></u> survey results", show: "分析問卷結果", ans: true, feedback: "analyze 是動詞「分析」。" },
-    { type: "句型搭配", word: "analyze", show: "______ survey results / 填入：analyze", ans: true, feedback: "應填入 analyze。" },
-    { type: "單字辨析", word: "<u><b>commission</b></u> a research project", show: "終止一項研究計畫", ans: false, feedback: "commission 在此作為動詞，意為「正式委託」。" },
-    { type: "句型搭配", word: "commission", show: "______ a research project / 填入：commission", ans: true, feedback: "應填入 commission。" },
-    { type: "單字辨析", word: "We are <u><b>committed</b></u> to providing quality service.", show: "本公司堅持/致力於提供高品質服務", ans: true, feedback: "be committed to 意為「堅定的、致力於...的」。" },
-    { type: "句型搭配", word: "committed", show: "We are ______ to providing quality service. / 填入: native", ans: false, feedback: "應填入 committed。" },
-    { type: "單字辨析", word: "a cost <u><b>comparison</b></u> between two suppliers", show: "兩家供應商之間的成本比較", ans: true, feedback: "comparison 是名詞「比較」。" },
-    { type: "句型搭配", word: "comparison", show: "a cost ______ between two suppliers / 填入：comparison", ans: true, feedback: "應填入 comparison。" }
+    // 351. divide (辨析: True / 句型: False)
+    { id: "divide", type: "單字辨析", word: "<u><b>divide</b></u> the project into three phases", show: "分成", ans: true, feedback: "divide 是動詞「分成」。" },
+    { id: "divide", type: "句型搭配", show: "______ the project into three phases / 填入：afford", ans: false, feedback: "應填入 divide。" },
+
+    // 352. native (辨析: False / 句型: True)
+    { id: "native", type: "單字辨析", word: "plants <u><b>native</b></u> to this island", show: "有希望的，大有可為的", ans: false, feedback: "native 是形容詞「土生土長的、本土的」。" },
+    { id: "native", type: "句型搭配", show: "plants ______ to this island / 填入：native", ans: true, feedback: "應填入 native。" },
+
+    // 353. afford (辨析: True / 句型: False)
+    { id: "afford", type: "單字辨析", word: "<u><b>afford</b></u> the cost of living", show: "負擔得起;有時間做", ans: true, feedback: "afford 是動詞「負擔得起;有時間做;買得起」。" },
+    { id: "afford", type: "句型搭配", show: "______ the cost of living / 填入：prove", ans: false, feedback: "應填入 afford。" },
+
+    // 354. income (辨析: False / 句型: True)
+    { id: "income", type: "單字辨析", word: "high household <u><b>income</b></u>", show: "節省;儲蓄", ans: false, feedback: "income 是名詞「收入」。" },
+    { id: "income", type: "句型搭配", show: "high household ______ / 填入：income", ans: true, feedback: "應填入 income。" },
+
+    // 355. occur (辨析: True / 句型: False)
+    { id: "occur", type: "單字辨析", word: "an error <u><b>occurred</b></u> during payment", show: "發生、出現", ans: true, feedback: "occur 是動詞「發生、出現」。" },
+    { id: "occur", type: "句型搭配", show: "an error ______ during payment / 填入：regarded", ans: false, feedback: "應填入 occurred。" },
+
+    // 356. saving (辨析: False / 句型: True)
+    { id: "saving", type: "單字辨析", word: "energy <u><b>savings</b></u>", show: "調查發現,研究結果", ans: false, feedback: "saving 是名詞「節省;儲蓄;節約」。" },
+    { id: "saving", type: "句型搭配", show: "energy ______ / 填入：savings", ans: true, feedback: "應填入 savings。" },
+
+    // 357. finding (辨析: True / 句型: False)
+    { id: "finding", type: "單字辨析", word: "research <u><b>findings</b></u> show that…", show: "調查發現,研究結果", ans: true, feedback: "finding 是名詞「調查發現,研究結果」。" },
+    { id: "finding", type: "句型搭配", show: "research ______ show that… / 填入：promising", ans: false, feedback: "應填入 findings。" },
+
+    // 358. locate (辨析: False / 句型: True)
+    { id: "locate", type: "單字辨析", word: "<u><b>locate</b></u> the missing file", show: "保護、保存", ans: false, feedback: "locate 是動詞「找出」。" },
+    { id: "locate", type: "句型搭配", show: "______ the missing file / 填入：locate", ans: true, feedback: "應填入 locate。" },
+
+    // 359. postpone (辨析: True / 句型: False)
+    { id: "postpone", type: "單字辨析", word: "<u><b>postpone</b></u> a meeting until next week", show: "延期", ans: true, feedback: "postpone 是動詞「延期」。" },
+    { id: "postpone", type: "句型搭配", show: "______ a meeting until next week / 填入：deserve", ans: false, feedback: "應填入 postpone。" },
+
+    // 360. preserve (辨析: False / 句型: True)
+    { id: "preserve", type: "單字辨析", word: "<u><b>preserve</b></u> the natural environment", show: "結果是;證明", ans: false, feedback: "preserve 是動詞「保護、保存」。" },
+    { id: "preserve", type: "句型搭配", show: "______ the natural environment / 填入：preserve", ans: true, feedback: "應填入 preserve。" },
+
+    // 361. prove (辨析: True / 句型: False)
+    { id: "prove", type: "單字辨析", word: "<u><b>prove</b></u> to be effective", show: "結果是;證明、證實", ans: true, feedback: "prove 是動詞「結果是;證明、證實」。" },
+    { id: "prove", type: "句型搭配", show: "______ to be effective / 填入：stress", ans: false, feedback: "應填入 prove。" },
+
+    // 362. exact (辨析: False / 句型: True)
+    { id: "exact", type: "單字辨析", word: "the <u><b>exact</b></u> time of delivery", show: "勞動;勞工", ans: false, feedback: "exact 是形容詞「正確的」。" },
+    { id: "exact", type: "句型搭配", show: "the ______ time of delivery / 填入：exact", ans: true, feedback: "應填入 exact。" },
+
+    // 363. gain (辨析: True / 句型: False)
+    { id: "gain", type: "單字辨析", word: "<u><b>gain</b></u> popularity", show: "獲得;增加", ans: true, feedback: "gain 是動詞「獲得;增加」。" },
+    { id: "gain", type: "句型搭配", show: "______ popularity / 填入：afford", ans: false, feedback: "應填入 gain。" },
+
+    // 364. labor (辨析: False / 句型: True)
+    { id: "labor", type: "單字辨析", word: "reduce <u><b>labor</b></u> costs", show: "密切地;嚴密地", ans: false, feedback: "labor 是名詞「勞動;勞工」。" },
+    { id: "labor", type: "句型搭配", show: "reduce ______ costs / 填入：labor", ans: true, feedback: "應填入 labor。" },
+
+    // 365. regard (辨析: True / 句型: False)
+    { id: "regard", type: "單字辨析", word: "be widely <u><b>regarded</b></u> as", show: "把...認為、視做", ans: true, feedback: "regard 是動詞「把...認為、視做」。" },
+    { id: "regard", type: "句型搭配", show: "be widely ______ as / 填入：native", ans: false, feedback: "應填入 regarded。" },
+
+    // 366. closely (辨析: False / 句型: True)
+    { id: "closely", type: "單字辨析", word: "work <u><b>closely</b></u> with suppliers", show: "應得", ans: false, feedback: "closely 是副詞「密切地;嚴密地」。" },
+    { id: "closely", type: "句型搭配", show: "work ______ with suppliers / 填入：closely", ans: true, feedback: "應填入 closely。" },
+
+    // 367. deserve (辨析: True / 句型: False)
+    { id: "deserve", type: "單字辨析", word: "<u><b>deserve</b></u> a promotion", show: "應得", ans: true, feedback: "deserve 是動詞「應得」。" },
+    { id: "deserve", type: "句型搭配", show: "______ a promotion / 填入：occur", ans: false, feedback: "應填入 deserve。" },
+
+    // 368. identify (辨析: False / 句型: True)
+    { id: "identify", type: "單字辨析", word: "<u><b>identify</b></u> potential risks", show: "忠誠的", ans: false, feedback: "identify 是動詞「識別、認出、找出」。" },
+    { id: "identify", type: "句型搭配", show: "______ potential risks / 填入：identify", ans: true, feedback: "應填入 identify。" },
+
+    // 369. loyal (辨析: True / 句型: False)
+    { id: "loyal", type: "單字辨析", word: "<u><b>loyal</b></u> customers", show: "忠誠的", ans: true, feedback: "loyal 是形容詞「忠誠的」。" },
+    { id: "loyal", type: "句型搭配", show: "______ customers / 填入：closely", ans: false, feedback: "應填入 loyal。" },
+
+    // 370. promising (辨析: False / 句型: True)
+    { id: "promising", type: "單字辨析", word: "the most <u><b>promising</b></u> candidate for the position", show: "強調", ans: false, feedback: "promising 是形容詞「有希望的，有前途的，大有可為的」。" },
+    { id: "promising", type: "句型搭配", show: "the most ______ candidate for the position / 填入：promising", ans: true, feedback: "應填入 promising。" },
+
+    // 371. stress (辨析: True / 句型: False)
+    { id: "stress", type: "單字辨析", word: "<u><b>stress</b></u> the importance of teamwork", show: "強調", ans: true, feedback: "stress 是動詞「強調」。" },
+    { id: "stress", type: "句型搭配", show: "______ the importance of teamwork / 填入：commission", ans: false, feedback: "應填入 stress。" },
+
+    // 372. analyze (辨析: False / 句型: True)
+    { id: "analyze", type: "單字辨析", word: "<u><b>analyze</b></u> survey results", show: "比較", ans: false, feedback: "analyze 是動詞「分析」。" },
+    { id: "analyze", type: "句型搭配", show: "______ survey results / 填入：analyze", ans: true, feedback: "應填入 analyze。" },
+
+    // 373. commission (辨析: True / 句型: False)
+    { id: "commission", type: "單字辨析", word: "<u><b>commission</b></u> a research project", show: "正式委託", ans: true, feedback: "commission 是動詞「正式委託」、名詞「委員會;佣金」。" },
+    { id: "commission", type: "句型搭配", show: "______ a research project / 填入：committed", ans: false, feedback: "應填入 commission。" },
+
+    // 374. committed (辨析: False / 句型: True)
+    { id: "committed", type: "單字辨析", word: "We are <u><b>committed</b></u> to providing quality service.", show: "正式委託", ans: false, feedback: "committed 是形容詞「堅定的;盡忠職守的」。" },
+    { id: "committed", type: "句型搭配", show: "We are ______ to providing quality service. / 填入：committed", ans: true, feedback: "應填入 committed。" },
+
+    // 375. comparison (辨析: True / 句型: False)
+    { id: "comparison", type: "單字辨析", word: "a cost <u><b>comparison</b></u> between two suppliers", show: "比較", ans: true, feedback: "comparison 是名詞「比較」。" },
+    { id: "comparison", type: "句型搭配", show: "a cost ______ between two suppliers / 填入：native", ans: false, feedback: "應填入 comparison。" }
 ];
 
 let questions = [];
@@ -199,9 +248,36 @@ let score = 0;
 let userHistoryList = []; 
 
 function initQuiz() {
-    const shuffled = [...rawData].sort(() => 0.5 - Math.random());
-    questions = shuffled.slice(0, 5);
-    currentIndex = 0; score = 0; userHistoryList = [];
+    const groups = {};
+    rawData.forEach(item => {
+        if (!groups[item.id]) groups[item.id] = [];
+        groups[item.id].push(item);
+    });
+
+    const wordIds = Object.keys(groups);
+    const shuffledIds = wordIds.sort(() => 0.5 - Math.random()).slice(0, 5);
+
+    // 強制混合題型設計：兩種類型至少各佔一半，防止單一題型連續出現 5 題
+    const typesToAssign = ["單字辨析", "單字辨析", "句型搭配", "句型搭配", Math.random() > 0.5 ? "單字辨析" : "句型搭配"];
+    typesToAssign.sort(() => 0.5 - Math.random());
+
+    let selectedQuestions = [];
+    shuffledIds.forEach((id, index) => {
+        const targetType = typesToAssign[index];
+        const questionOfTargetType = groups[id].find(q => q.type === targetType);
+        if (questionOfTargetType) {
+            selectedQuestions.push(questionOfTargetType);
+        } else {
+            const randomPick = groups[id][Math.floor(Math.random() * groups[id].length)];
+            selectedQuestions.push(randomPick);
+        }
+    });
+
+    questions = selectedQuestions.sort(() => 0.5 - Math.random());
+    
+    currentIndex = 0; 
+    score = 0; 
+    userHistoryList = [];
     document.getElementById('main-banner').classList.remove('compact');
     document.getElementById('intro-area').style.display = 'block';
     document.getElementById('quiz-section').style.display = 'block';
@@ -215,15 +291,21 @@ function loadQuestion() {
     document.getElementById('q-count').innerText = `題目 ${currentIndex + 1} / 5`;
     document.getElementById('progress').style.width = `${((currentIndex + 1) / 5) * 100}%`;
     document.getElementById('type-tag').innerText = q.type;
-    const wordEl = document.getElementById('word');
     
+    const wordEl = document.getElementById('word');
+    const contentEl = document.getElementById('content');
+    
+    // 徹底清空並重置欄位，防止 undefined 交叉污染與單字殘留 Bug
+    wordEl.innerHTML = '';
+    contentEl.innerText = '';
+
     if (q.type === "句型搭配") {
-        wordEl.style.display = 'none';
-        document.getElementById('content').innerText = q.show;
+        wordEl.style.display = 'none'; 
+        contentEl.innerText = q.show; 
     } else {
         wordEl.style.display = 'block';
         wordEl.innerHTML = q.word; 
-        document.getElementById('content').innerText = `中文意思：${q.show}`;
+        contentEl.innerText = `核心單字中文意思：${q.show}`;
     }
     
     document.getElementById('feedback').style.display = 'none';
@@ -237,7 +319,13 @@ function handleAnswer(userAns) {
     document.querySelectorAll('.btn-group button').forEach(b => b.disabled = true);
     feedback.style.display = 'block';
     const isCorrect = (userAns === q.ans);
-    userHistoryList.push({ word: q.word, isCorrect: isCorrect, feedback: q.feedback });
+    
+    userHistoryList.push({ 
+        word: q.type === "句型搭配" ? "句型搭配" : q.word, 
+        isCorrect: isCorrect, 
+        feedback: q.feedback 
+    });
+    
     if (isCorrect) {
         score += 20;
         feedback.innerText = "✅ " + q.feedback;
@@ -265,11 +353,11 @@ function showResult() {
     const now = new Date();
     const timeStr = `${now.getMonth() + 1}/${now.getDate()} ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
 
-    // 使用獨立的 EP15 儲存欄位
-    let history = JSON.parse(localStorage.getItem('toeic_history_ep15_v3')) || [];
+    // 使用 EP15 專屬快取緩存 Key 值
+    let history = JSON.parse(localStorage.getItem('toeic_history_ep15_v1')) || [];
     history.unshift({ score: score, time: timeStr });
     if(history.length > 5) history.pop();
-    localStorage.setItem('toeic_history_ep15_v3', JSON.stringify(history));
+    localStorage.setItem('toeic_history_ep15_v1', JSON.stringify(history));
     renderHistoryList(history);
 
     document.getElementById('review-list').innerHTML = userHistoryList.map(item => `
@@ -296,7 +384,7 @@ function renderHistoryList(history) {
 
 function confirmClear() {
     if (confirm("確定要清除所有練習紀錄嗎？")) {
-        localStorage.removeItem('toeic_history_ep15_v3');
+        localStorage.removeItem('toeic_history_ep15_v1');
         renderHistoryList([]);
     }
 }
